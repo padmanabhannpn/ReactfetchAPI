@@ -38,6 +38,9 @@ createRoot(document.getElementById('root')).render(
         {/* Route for /about - renders About component */}
         <Route path="/about" element={<About />} />
 
+        {/* Fallback for unmatched routes */}
+        <Route path="*" element={<h2>Page Not Found</h2>} />
+
       </Routes>
 
       {/* <App /> This was the old direct rendering of App - now handled via routes */}
