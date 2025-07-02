@@ -1,31 +1,48 @@
+// Import React StrictMode for highlighting potential issues in development
 import { StrictMode } from 'react'
+
+// Import createRoot from ReactDOM to initialize the app
 import { createRoot } from 'react-dom/client'
+
+// Import global styles
 import './index.css'
+
+// Import the main App component
 import App from './App.jsx'
+
+// Import React Router components for routing
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+// Import individual page components
 import HomePage from './Pages/HomePage.jsx'
 import ProfilePage from './Pages/ProfilePage.jsx'
 import About from './Pages/About.jsx'
 
+// Render the root of the application
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-  
+  <StrictMode> {/* Helps detect potential issues in development mode */}
 
+    <BrowserRouter> {/* Enables client-side routing */}
 
-<BrowserRouter>
+      <Routes> {/* Define all the routes for the application */}
 
-<Routes>
+        {/* Route for base path - renders App component */}
+        <Route path="/" element={<App />} />
 
-<Route path="/" element={<App />} />
-<Route path="/home" element={<HomePage />} />
-<Route path="/profile" element={<ProfilePage />} />
-<Route path="/about" element={<About />} />
+        {/* Route for /home - renders HomePage component */}
+        <Route path="/home" element={<HomePage />} />
 
-</Routes>
+        {/* Route for /profile - renders ProfilePage component */}
+        <Route path="/profile" element={<ProfilePage />} />
 
-  {/* <App /> */}
+        {/* Route for /about - renders About component */}
+        <Route path="/about" element={<About />} />
 
-</BrowserRouter>
+      </Routes>
+
+      {/* <App /> This was the old direct rendering of App - now handled via routes */}
+
+    </BrowserRouter>
 
   </StrictMode>,
 )
