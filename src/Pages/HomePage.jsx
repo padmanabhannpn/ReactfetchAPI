@@ -9,7 +9,6 @@ function HomePage  ()
     localStorage.removeItem("isLogin")
     localStorage.clear();
     localStorage.setItem("isLogin","Login")
-    const getLogin = localStorage.getItem("isLogin")
 
     return(
         

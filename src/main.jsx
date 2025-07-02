@@ -18,6 +18,7 @@ import HomePage from './Pages/HomePage.jsx'
 import ProfilePage from './Pages/ProfilePage.jsx'
 import About from './Pages/About.jsx'
 import UserPage from './Pages/UserPage.jsx'
+import PrivateRoute from './PrivateRoute.jsx'
 
 // Render the root of the application
 createRoot(document.getElementById('root')).render(
@@ -33,12 +34,16 @@ createRoot(document.getElementById('root')).render(
         {/* Route for /home - renders HomePage component */}
         <Route path="/home" element={<HomePage />} />
 
-        {/* Route for /profile - renders ProfilePage component */}
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route  element={<PrivateRoute />}>
+          <Route path="/profile" element={<ProfilePage />} />
 
         {/* Route for /about - renders About component */}
-        <Route path="/about" element={<About />} />
-        <Route path="/users/:id" element={<UserPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/users/:id" element={<UserPage />} />
+        </Route>
+
+        {/* Route for /profile - renders ProfilePage component */}
+        
         {/* Fallback for unmatched routes */}
         <Route path="*" element={<h2>Page Not Found</h2>} />
 
