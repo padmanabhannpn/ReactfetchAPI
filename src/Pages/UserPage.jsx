@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-function ProfilePage  ()
+function UserPage  ()
 {
 
-    const [users, SetUsers] = useState([]);
+    const [users, SetUsers] = useState({});
     
       // State to handle loading status
       const [loading, setLoading] = useState(true);
+
+      const{id} = useParams();
+
+     
     
 
       // useEffect hook to fetch products on component mount
@@ -16,11 +20,11 @@ function ProfilePage  ()
   useEffect(() => {
     // Async function to fetch product data from API
     const fetchAPI = async () => {
-      const response = await fetch("https://fakestoreapi.in/api/users"); // Fetch data from API
+      const response = await fetch(`https://fakestoreapi.in/api/users/${id}`  ); // Fetch data from API
       const data = await response.json(); // Parse JSON response
-      SetUsers(data.users); // Update product state
+      SetUsers(data.user); // Update product state
       setLoading(false); // Set loading to false once data is loaded
-      console.log(data.users); // Log products to console for debugging
+      console.log(data.user); // Log products to console for debugging
     };
 
     fetchAPI(); // Call the fetch function
@@ -33,28 +37,29 @@ function ProfilePage  ()
     return(
         
       <>
-      {/* //<Link to={`/users/${user.id}`}></Link> */}
            
-             {users.map(user => (
-          <div key={user.id} > {/* Use product.id as key for optimal rendering */}
-          <Link to={`/users/${user.id}`}>  {user.name.firstname}</Link>
-          <h2>First Name : {user.name.firstname}</h2>
-          <h2>Last Name : {user.name.lastname}</h2>
+
+           <h2>First Name : {users.name.firstname}</h2>
+          <h2>Last Name : {users.name.lastname}</h2>
+
+             {/* {users.map(user => (
+          <div key={user.id}> 
+          
           <p>City : {user.address.city}</p>
           <p>Street : {user.address.street}</p>
             <p>Zipcode : {user.address.zipcode}</p>
                <p>Phone : {user.phone}</p>
          
-           <hr /> {/* Line between items */}
+           <hr /> 
         </div>
-      ))}
+      ))} */}
 
         </>
     )
 
 }
 
-export default ProfilePage
+export default UserPage
 
 
 //  <div key={user.id}>

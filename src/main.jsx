@@ -17,6 +17,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './Pages/HomePage.jsx'
 import ProfilePage from './Pages/ProfilePage.jsx'
 import About from './Pages/About.jsx'
+import UserPage from './Pages/UserPage.jsx'
 
 // Render the root of the application
 createRoot(document.getElementById('root')).render(
@@ -37,7 +38,7 @@ createRoot(document.getElementById('root')).render(
 
         {/* Route for /about - renders About component */}
         <Route path="/about" element={<About />} />
-
+        <Route path="/users/:id" element={<UserPage />} />
         {/* Fallback for unmatched routes */}
         <Route path="*" element={<h2>Page Not Found</h2>} />
 
